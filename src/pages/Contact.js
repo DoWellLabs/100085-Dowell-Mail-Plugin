@@ -10,15 +10,15 @@ const Contact = () => {
   const [body, setBody] = useState("");
   const [loader, setLoader] = useState("Save");
 
-  const API_KEY = process.env.REACT_APP_API_KEY;
-  const url = `https://100085.pythonanywhere.com/api/v1/mail/${API_KEY}/?type=validate`;
+  const api_key = process.env.REACT_APP_API_KEY;
+  const url = `https://100085.pythonanywhere.com/api/v1/mail/${api_key}`;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoader("Saving....");
+    setLoader("Saving...");
     axios
       .post(
-        url,
+        `${url}/?type=validate`,
         {
           name: receiverName,
           email: receiverEmail,
@@ -40,7 +40,7 @@ const Contact = () => {
   };
 
   useEffect(() => {
-    axios.get(url).then((res) => {
+    axios.get(`${url}/?type=send-email`).then((res) => {
       setSenderName(res.data.senderName);
       setSenderEmail(res.data.senderEmail);
       setReceiverName(res.data.receiverName);
