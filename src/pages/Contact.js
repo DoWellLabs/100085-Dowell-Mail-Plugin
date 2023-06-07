@@ -10,32 +10,32 @@ const Contact = () => {
   const [body, setBody] = useState("");
   const [loader, setLoader] = useState("Save");
 
-  const api_key = process.env.REACT_APP_API_KEY;
+  // const api_key = process.env.REACT_APP_API_KEY;
+  const api_key = "1eb3120a-38ce-428b-b6d7-bfb8fac59fcf";
   const url = `https://100085.pythonanywhere.com/api/v1/mail/${api_key}`;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoader("Saving...");
+
+    let data = JSON.stringify({
+      receiverName,
+      receiverEmail,
+      senderName,
+      senderEmail,
+      subject,
+      body,
+    });
+
     axios
-      .post(
-        `${url}/?type=validate`,
-        {
-          receiverName,
-          receiverEmail,
-          senderName,
-          senderEmail,
-          subject,
-          body,
+      .post(`${url}/?type=validate`, data, {
+        headers: {
+          "Content-Type": "application/json",
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          timeout: 3000,
-        }
-      )
+      })
       .then((res) => {
         setLoader("Save");
+        console.log(res);
       })
       .catch((error) => {
         console.log(error);
