@@ -14,7 +14,7 @@ const Contact = () => {
   // const api_key = "1eb3120a-38ce-428b-b6d7-bfb8fac59fcf";
   const url = `https://100085.pythonanywhere.com/api/v1/mail/${api_key}`;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoader("Saving...");
 
@@ -27,25 +27,23 @@ const Contact = () => {
       body,
     });
 
-    axios
-      .post(`${url}/?type=validate`, data, {
+    try {
+      const res = await axios.post(`${url}/?type=validate`, data, {
         headers: {
           "Content-Type": "application/json",
         },
-      })
-      .then((res) => {
-        setLoader("Save");
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error);
       });
+      setLoader("Save");
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    axios
-      .get(`${url}/?type=send-email`)
-      .then((res) => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`${url}/?type=send-email`);
         const {
           senderName,
           senderEmail,
@@ -62,10 +60,11 @@ const Contact = () => {
           setSubject(subject),
           setBody(body),
         ]);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.log(error);
-      });
+      }
+    };
+    fetchData();
   }, [url]);
 
   return (
