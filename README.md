@@ -1,26 +1,70 @@
-# Dowell Mail API Services
+# Getting Started with Create React App
 
-# About Dowell Mail Services
-Dowell Mail offers a reliable and user-friendly API for sending and validating emails. Our API services provide a seamless experience for sending emails from your own email ID and validating email addresses for accuracy. Whether you need to send important notifications or verify email addresses, Dowell Mail API has got you covered.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-To understand the API calls and their functionality, I recommend reading the documentation. The documentation provides comprehensive information on making API requests and utilizing the available endpoints. It explains the required parameters, request methods, and response formats for each API call.
+## Available Scripts
 
-[Documentation Link](https://documenter.getpostman.com/view/26372308/2s93mATeiM)
+In the project directory, you can run:
 
-# Generate API Key
-To access our services, you need to generate an API key. This key serves as a unique identifier for your account and ensures secure communication between your application and our API. You can generate an API key through our website or by contacting our support team.
+### `npm start`
 
-# Sending Emails
-Once you have your API key, you can start sending emails using Dowell Mail API. Our API is designed to be simple and easy to integrate into your existing applications. With a few API calls, you can programmatically send emails, saving you time and effort.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-# Validating Emails
-In addition to sending emails, our API allows you to validate email addresses. By using the validation feature, you can check the validity of an email address before sending any messages. This ensures that your emails reach the intended recipients and helps you maintain a clean and reliable email list.
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-# Free Services
-We offer a free tier for users who want to explore our services or have low email volume requirements. The free tier allows you to send up to 25 emails per day and includes email validation. After 24 hours, the count resets, allowing you to send another 25 emails. This tier is ideal for personal projects or small-scale applications.
+### `npm test`
 
-# Paid Services
-For users with higher email sending and validation needs, we provide paid services. Our paid tier allows you to increase the number of emails you can send per day and offers bulk email validation. This provides greater flexibility and scalability for your business or larger projects. By subscribing to our paid services, you can also enjoy additional features such as priority support and increased email quotas.
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-# Conclusion
-Dowell Mail API Services provide a reliable and user-friendly solution for sending and validating emails. Whether you choose the free or paid tier, our API enables you to send emails effortlessly and verify email addresses with ease. Start today by generating your API key and unlock the power of Dowell Mail's email delivery and bulk validation services.
+### `npm run build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
