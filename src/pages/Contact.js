@@ -36,18 +36,26 @@ const Contact = () => {
       )
       .then((res) => {
         setLoader("Save");
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
   useEffect(() => {
-    axios.get(`${url}/?type=send-email`).then((res) => {
-      setSenderName(res.data.senderName);
-      setSenderEmail(res.data.senderEmail);
-      setReceiverName(res.data.receiverName);
-      setReceiverEmail(res.data.receiverEmail);
-      setSubject(res.data.subject);
-      setBody(res.data.body);
-    });
+    axios
+      .get(`${url}/?type=send-email`)
+      .then((res) => {
+        setSenderName(res.data.senderName);
+        setSenderEmail(res.data.senderEmail);
+        setReceiverName(res.data.receiverName);
+        setReceiverEmail(res.data.receiverEmail);
+        setSubject(res.data.subject);
+        setBody(res.data.body);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, [url]);
 
   return (
