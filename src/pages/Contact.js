@@ -20,12 +20,12 @@ const Contact = () => {
       .post(
         `${url}/?type=validate`,
         {
-          name: receiverName,
-          email: receiverEmail,
-          fromName: senderName,
-          fromEmail: senderEmail,
-          subject: subject,
-          body: body,
+          receiverName,
+          receiverEmail,
+          senderName,
+          senderEmail,
+          subject,
+          body,
         },
         {
           headers: {
