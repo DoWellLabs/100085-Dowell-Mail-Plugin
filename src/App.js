@@ -1,10 +1,10 @@
 import React from "react";
-import Contact from "./components/Contact";
+import EmailPlugin from "./components/EmailPlugin";
 
 function App() {
   return (
     <React.Fragment>
-      <Contact />
+      <EmailPlugin />
     </React.Fragment>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const Contact = () => {
+const EmailPlugin = () => {
   const [senderName, setSenderName] = useState("");
   const [senderEmail, setSenderEmail] = useState("");
   const [receiverName, setReceiverName] = useState("");
@@ -180,4 +180,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default EmailPlugin;

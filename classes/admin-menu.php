@@ -11,7 +11,7 @@ class WPDE_Create_Admin_Page {
 
   public function create_admin_menu() {
     $capablity = 'manage_options';
-    $slug = "wpde-contact";
+    $slug = "wpde-mail";
 
 
     add_menu_page(
