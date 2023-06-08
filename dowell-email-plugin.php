@@ -19,7 +19,7 @@ define ( 'WPDE_URL', trailingslashit( plugins_url( '/', __FILE__ ) ) );
 add_action("admin_enqueue_scripts", "load_scripts");
 
 function load_scripts() {
-  wp_enqueue_scripts("wp-dowell-email", WPDE_URL . "src/index.js", ["wp-element"], wp_rand(), true);
+  wp_enqueue_scripts("wp-dowell-email", WPDE_URL . "build/index.js", ["wp-element"], wp_rand(), true);
   wp_localize_script("wp-dowell-email", "appLocalizer", [
     'apiUrl' => home_url('/wp-json'),
     "nonce" => wp_create_nonce("wp-rest")
