@@ -27,3 +27,4 @@ function load_scripts() {
 }
 
 require_once WPDE_PATH . "classes/admin-menu.php";
+require_once WPDE_PATH . "classes/email-routes.php";
