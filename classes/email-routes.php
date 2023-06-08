@@ -26,18 +26,18 @@
   public function get_email() {
     $senderName = get_option( 'wpde_email_firstname' );
     $senderEmail  = get_option( 'wpde_email_senderEmail' );
-    $receiverName  = get_option( 'wpde_email_receiverName' );
-    $receiverEmail     = get_option( 'wpde_email_receiverEmail');
-    $subject     = get_option( 'wpde_email_subject');
-    $body     = get_option( 'wpde_email_body');
+    $receiverName = get_option( 'wpde_email_receiverName' );
+    $receiverEmail = get_option( 'wpde_email_receiverEmail');
+    $subject = get_option( 'wpde_email_subject');
+    $body = get_option( 'wpde_email_body');
 
     $response = [
         'senderName' => $senderName,
-        'senderEmail'  => $senderEmail,
-        'receiverName'     => $receiverName,
-        'receiverEmail'     => $receiverEmail,
-        'subject'     => $subject,
-        'body'     => $body
+        'senderEmail' => $senderEmail,
+        'receiverName'  => $receiverName,
+        'receiverEmail' => $receiverEmail,
+        'subject' => $subject,
+        'body' => $body
     ];
 
     return rest_ensure_response( $response );
