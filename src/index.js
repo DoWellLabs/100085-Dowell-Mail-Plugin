@@ -1,11 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 
-const root = ReactDOM.createRoot(document.getElementById("wpde-admin-app"));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+document.addEventListener("DOMContentLoaded", function () {
+  var element = document.getElementById("wpde-admin-app");
+  if (typeof element !== "undefined" && element !== null) {
+    ReactDOM.render(<App />, document.getElementById("wpde-admin-app"));
+  }
+});
