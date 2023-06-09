@@ -19,8 +19,9 @@ define ( 'WPDE_URL', trailingslashit( plugins_url( '/', __FILE__ ) ) );
  */
 add_action( 'admin_enqueue_scripts', 'load_scripts' );
 function load_scripts() {
-    wp_enqueue_script( 'wp-react-kickoff', WPDE_URL . 'dist/bundle.js', [ 'jquery', 'wp-element' ], wp_rand(), true );
-    wp_localize_script( 'wp-react-kickoff', 'appLocalizer', [
+    wp_enqueue_script( 'wp-dowell-email', WPDE_URL . 'dist/bundle.js', [ 'jquery', 'wp-element' ], wp_rand(), true );
+    wp_enqueue_style( 'wp-dowell-email', WPDE_URL . 'dist/output.css');
+    wp_localize_script( 'wp-dowell-email', 'appLocalizer', [
         'apiUrl' => home_url( '/wp-json' ),
         'nonce' => wp_create_nonce( 'wp_rest' ),
     ] );
