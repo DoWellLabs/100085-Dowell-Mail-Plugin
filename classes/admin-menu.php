@@ -21,12 +21,11 @@ class WPDE_Create_Admin_Page {
       $slug,
       [$this, "menu_page_template"],
       "dashicons-buddicons-replies",
-
     );
   }
 
   public function menu_page_template() {
-    echo '<div class="wrap"><div id="wpde-admin-app"></div></div>';
+    echo '<div class="wrap"><div id="wp-dowell-email"></div></div>';
   }
 }
 

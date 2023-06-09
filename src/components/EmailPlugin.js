@@ -40,30 +40,14 @@ const EmailPlugin = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(`${url}/?type=send-email`);
-        const {
-          senderName,
-          senderEmail,
-          receiverName,
-          receiverEmail,
-          subject,
-          body,
-        } = res.data;
-        Promise.all([
-          setSenderName(senderName),
-          setSenderEmail(senderEmail),
-          setReceiverName(receiverName),
-          setReceiverEmail(receiverEmail),
-          setSubject(subject),
-          setBody(body),
-        ]);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
+    axios.get(`${url}/?type=send-email`).then((res) => {
+      setSenderName(res.data.senderName),
+        setSenderEmail(res.data.senderEmail),
+        setReceiverName(res.data.receiverName),
+        setReceiverEmail(res.data.receiverEmail),
+        setSubject(res.data.subject),
+        setBody(res.data.body);
+    });
   }, [url]);
 
   return (

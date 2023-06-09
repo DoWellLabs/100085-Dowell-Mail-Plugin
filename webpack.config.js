@@ -1,19 +1,29 @@
+const path = require("path");
+
 module.exports = {
+  mode: "development",
   entry: "./src/index.js",
   output: {
-    path: __dirname,
+    path: path.resolve(__dirname, "dist"),
     filename: "./dist/bundle.js",
+    clean: true,
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /.js$/,
-        loader: "babel-loader",
+        test: /\.js$/,
         exclude: /node_modules/,
-        options: {
-          presets: [["env", "react"]],
-          plugins: ["transform-class-properties"],
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+            plugins: ["@babel/plugin-proposal-class-properties"],
+          },
         },
+      },
+      {
+        test: /\.(sass|less|css)$/,
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
