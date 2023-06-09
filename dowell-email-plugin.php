@@ -8,23 +8,22 @@
  */
 
  if(!defined("ABSPATH")) : exit(); endif; // No direct access allowed.
-
-/** Define plugins Constants */
+/**
+* Define Plugins Contants
+*/
 define ( 'WPDE_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
 define ( 'WPDE_URL', trailingslashit( plugins_url( '/', __FILE__ ) ) );
 
-
-/** Loading necessary scripts */
-
-add_action("admin_enqueue_scripts", "load_scripts");
-
+/**
+ * Loading Necessary Scripts
+ */
+add_action( 'admin_enqueue_scripts', 'load_scripts' );
 function load_scripts() {
-  wp_enqueue_scripts("wp-dowell-email", WPDE_URL . "build/index.js", ["wp-element"], wp_rand(), true);
-  wp_enqueue_style('wp-dowell-email',  WPDE_URL . 'build/index.css');
-  wp_localize_script("wp-dowell-email", "appLocalizer", [
-    'apiUrl' => home_url('/wp-json'),
-    "nonce" => wp_create_nonce("wp-rest")
-  ]);
+    wp_enqueue_script( 'wp-react-kickoff', WPDE_URL . 'dist/bundle.js', [ 'jquery', 'wp-element' ], wp_rand(), true );
+    wp_localize_script( 'wp-react-kickoff', 'appLocalizer', [
+        'apiUrl' => home_url( '/wp-json' ),
+        'nonce' => wp_create_nonce( 'wp_rest' ),
+    ] );
 }
 
 require_once WPDE_PATH . "classes/admin-menu.php";
