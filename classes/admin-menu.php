@@ -20,7 +20,7 @@ class WPDE_Create_Admin_Page {
       $capablity,
       $slug,
       [$this, "menu_page_template"],
-      "dashicons-buddicons-replies",
+       "dashicons-email-alt",
     );
   }
 
