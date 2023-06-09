@@ -30165,11 +30165,7 @@ function App() {
   return wp.element.createElement(
     _react2.default.Fragment,
     null,
-    wp.element.createElement(
-      "h1",
-      null,
-      "Hello Addisu!!"
-    )
+    wp.element.createElement(_EmailPlugin2.default, null)
   );
 }
 
