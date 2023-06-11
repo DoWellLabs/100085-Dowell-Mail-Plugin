@@ -1,17 +1,20 @@
+const path = require("path");
+
 module.exports = {
   entry: "./src/index.js",
+  mode: "development",
   output: {
     path: __dirname,
     filename: "./dist/bundle.js",
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /.js$/,
         loader: "babel-loader",
         exclude: /node_modules/,
         options: {
-          presets: [["env", "react"]],
+          presets: ["@babel/react", "@babel/preset-env"],
           plugins: ["transform-class-properties"],
         },
       },

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useForm } from "react-hook-form";
 
 const EmailPlugin = () => {
   const [senderName, setSenderName] = useState("");
@@ -9,6 +10,7 @@ const EmailPlugin = () => {
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
   const [loader, setLoader] = useState("Save");
+  const { register } = useForm();
 
   const api_key = process.env.REACT_APP_API_KEY;
   const url = `https://100085.pythonanywhere.com/api/v1/mail/${api_key}`;
@@ -40,14 +42,28 @@ const EmailPlugin = () => {
   };
 
   useEffect(() => {
-    axios.get(`${url}/?type=send-email`).then((res) => {
-      setSenderName(res.data.senderName),
-        setSenderEmail(res.data.senderEmail),
-        setReceiverName(res.data.receiverName),
-        setReceiverEmail(res.data.receiverEmail),
-        setSubject(res.data.subject),
-        setBody(res.data.body);
-    });
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${url}/?type=send-email`);
+        const {
+          senderName,
+          senderEmail,
+          receiverName,
+          receiverEmail,
+          subject,
+          body,
+        } = response.data;
+        setSenderName(senderName);
+        setSenderEmail(senderEmail);
+        setReceiverName(receiverName);
+        setReceiverEmail(receiverEmail);
+        setSubject(subject);
+        setBody(body);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
   }, [url]);
 
   return (
@@ -72,6 +88,7 @@ const EmailPlugin = () => {
                     onChange={(e) => {
                       setSenderName(e.target.value);
                     }}
+                    {...register("Sender Name", { required: true })}
                     autoComplete="name"
                     className="form-input"
                   />
