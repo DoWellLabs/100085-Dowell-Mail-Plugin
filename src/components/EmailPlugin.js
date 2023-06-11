@@ -12,7 +12,8 @@ const EmailPlugin = () => {
   const [loader, setLoader] = useState("Save");
   const { register } = useForm();
 
-  const api_key = process.env.REACT_APP_API_KEY;
+  // const api_key = process.env.REACT_APP_API_KEY;
+  const api_key = "123";
   const url = `https://100085.pythonanywhere.com/api/v1/mail/${api_key}`;
 
   const handleSubmit = async (e) => {
