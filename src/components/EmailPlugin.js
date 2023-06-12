@@ -13,19 +13,20 @@ const EmailPlugin = () => {
   const api_key = "1eb3120a-38ce-428b-b6d7-bfb8fac59fcf";
   const url = `https://100085.pythonanywhere.com/api/v1/mail/${api_key}`;
 
-  const handleSubmit = async (data) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setLoader("Saving...");
 
     try {
       const res = await axios.post(
         `${url}/?type=send-email`,
         {
-          senderName: data.senderName,
-          senderEmail: data.senderEmail,
-          receiverName: data.receiverName,
-          receiverEmail: data.receiverEmail,
-          subject: data.subject,
-          body: data.body,
+          senderName,
+          senderEmail,
+          receiverName,
+          receiverEmail,
+          subject,
+          body,
         },
         {
           headers: {
