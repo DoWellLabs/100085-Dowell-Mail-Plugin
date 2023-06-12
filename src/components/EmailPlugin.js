@@ -10,24 +10,13 @@ const EmailPlugin = () => {
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
   const [loader, setLoader] = useState("Save");
-  const { register } = useForm();
+  const { register, handleSubmit } = useForm();
 
-  // const api_key = process.env.REACT_APP_API_KEY;
-  const api_key = "123";
+  const api_key = process.env.REACT_APP_API_KEY;
   const url = `https://100085.pythonanywhere.com/api/v1/mail/${api_key}`;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (data) => {
     setLoader("Saving...");
-
-    let data = JSON.stringify({
-      receiverName,
-      receiverEmail,
-      senderName,
-      senderEmail,
-      subject,
-      body,
-    });
 
     try {
       const res = await axios.post(`${url}/?type=validate`, data, {
@@ -75,21 +64,20 @@ const EmailPlugin = () => {
             Contact
           </h3>
         </div>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="overflow-hidden drop-shadow-2xl sm:rounded-2xl">
             <div className="bg-white px-4 py-5 sm:p-6">
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6 sm:col-span-3">
                   <input
                     type="text"
-                    name="name"
+                    name="senderName"
                     placeholder="Sender name"
-                    id="name"
                     value={senderName}
                     onChange={(e) => {
                       setSenderName(e.target.value);
                     }}
-                    {...register("Sender Name", { required: true })}
+                    {...register("senderName", { required: true })}
                     autoComplete="name"
                     className="form-input"
                   />
@@ -98,13 +86,13 @@ const EmailPlugin = () => {
                 <div className="col-span-6 sm:col-span-3">
                   <input
                     type="text"
-                    name="email-address"
+                    name="senderEmail"
                     placeholder="Sender Email"
-                    id="email-address"
                     value={senderEmail}
                     onChange={(e) => {
                       setSenderEmail(e.target.value);
                     }}
+                    {...register("senderEmail", { required: true })}
                     autoComplete="email"
                     className="form-input"
                   />
@@ -113,13 +101,13 @@ const EmailPlugin = () => {
                 <div className="col-span-6 sm:col-span-3">
                   <input
                     type="text"
-                    name="receiver-name"
+                    name="receiverName"
                     placeholder="Receiver Name"
-                    id="receiver-name"
                     value={receiverName}
                     onChange={(e) => {
                       setReceiverName(e.target.value);
                     }}
+                    {...register("receiverName", { required: true })}
                     autoComplete="receiver-name"
                     className="form-input"
                   />
@@ -128,13 +116,13 @@ const EmailPlugin = () => {
                 <div className="col-span-6 sm:col-span-3">
                   <input
                     type="text"
-                    name="email-address"
+                    name="receiverEmail"
                     placeholder="Receiver Email"
-                    id="email-address"
                     value={receiverEmail}
                     onChange={(e) => {
                       setReceiverEmail(e.target.value);
                     }}
+                    {...register("receiverEmail", { required: true })}
                     autoComplete="email"
                     className="form-input"
                   />
@@ -142,13 +130,13 @@ const EmailPlugin = () => {
 
                 <div className="col-span-6 sm:col-span-3">
                   <input
-                    id="subject"
                     name="subject"
                     type="text"
                     value={subject}
                     onChange={(e) => {
                       setSubject(e.target.value);
                     }}
+                    {...register("subject", { required: true })}
                     placeholder="Subject"
                     autoComplete="subject"
                     className="form-input"
@@ -157,12 +145,12 @@ const EmailPlugin = () => {
 
                 <div className="col-span-6">
                   <textarea
-                    id="message"
-                    name="message"
+                    name="body"
                     value={body}
                     onChange={(e) => {
                       setBody(e.target.value);
                     }}
+                    {...register("Message", { required: true })}
                     placeholder="Message"
                     rows={4}
                     className="form-input"
