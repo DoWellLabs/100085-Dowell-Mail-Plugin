@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useForm } from "react-hook-form";
 
 const EmailPlugin = () => {
   const [senderName, setSenderName] = useState("");
@@ -10,51 +9,36 @@ const EmailPlugin = () => {
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
   const [loader, setLoader] = useState("Save");
-  const { register, handleSubmit } = useForm();
 
-  const api_key = process.env.REACT_APP_API_KEY;
+  const api_key = "1eb3120a-38ce-428b-b6d7-bfb8fac59fcf";
   const url = `https://100085.pythonanywhere.com/api/v1/mail/${api_key}`;
 
-  const onSubmit = async (data) => {
+  const handleSubmit = async (data) => {
     setLoader("Saving...");
 
     try {
-      const res = await axios.post(`${url}/?type=validate`, data, {
-        headers: {
-          "Content-Type": "application/json",
+      const res = await axios.post(
+        `${url}/?type=send-email`,
+        {
+          senderName: data.senderName,
+          senderEmail: data.senderEmail,
+          receiverName: data.receiverName,
+          receiverEmail: data.receiverEmail,
+          subject: data.subject,
+          body: data.body,
         },
-      });
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       setLoader("Save");
       console.log(res);
     } catch (error) {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${url}/?type=send-email`);
-        const {
-          senderName,
-          senderEmail,
-          receiverName,
-          receiverEmail,
-          subject,
-          body,
-        } = response.data;
-        setSenderName(senderName);
-        setSenderEmail(senderEmail);
-        setReceiverName(receiverName);
-        setReceiverEmail(receiverEmail);
-        setSubject(subject);
-        setBody(body);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, [url]);
 
   return (
     <div className="flex relative flex-col md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center">
@@ -64,7 +48,7 @@ const EmailPlugin = () => {
             Contact
           </h3>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit}>
           <div className="overflow-hidden drop-shadow-2xl sm:rounded-2xl">
             <div className="bg-white px-4 py-5 sm:p-6">
               <div className="grid grid-cols-6 gap-6">
@@ -77,7 +61,6 @@ const EmailPlugin = () => {
                     onChange={(e) => {
                       setSenderName(e.target.value);
                     }}
-                    {...register("senderName", { required: true })}
                     autoComplete="name"
                     className="form-input"
                   />
@@ -92,7 +75,6 @@ const EmailPlugin = () => {
                     onChange={(e) => {
                       setSenderEmail(e.target.value);
                     }}
-                    {...register("senderEmail", { required: true })}
                     autoComplete="email"
                     className="form-input"
                   />
@@ -107,7 +89,6 @@ const EmailPlugin = () => {
                     onChange={(e) => {
                       setReceiverName(e.target.value);
                     }}
-                    {...register("receiverName", { required: true })}
                     autoComplete="receiver-name"
                     className="form-input"
                   />
@@ -122,7 +103,6 @@ const EmailPlugin = () => {
                     onChange={(e) => {
                       setReceiverEmail(e.target.value);
                     }}
-                    {...register("receiverEmail", { required: true })}
                     autoComplete="email"
                     className="form-input"
                   />
@@ -136,7 +116,6 @@ const EmailPlugin = () => {
                     onChange={(e) => {
                       setSubject(e.target.value);
                     }}
-                    {...register("subject", { required: true })}
                     placeholder="Subject"
                     autoComplete="subject"
                     className="form-input"
@@ -150,7 +129,6 @@ const EmailPlugin = () => {
                     onChange={(e) => {
                       setBody(e.target.value);
                     }}
-                    {...register("Message", { required: true })}
                     placeholder="Message"
                     rows={4}
                     className="form-input"
