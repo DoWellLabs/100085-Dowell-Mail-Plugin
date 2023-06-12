@@ -10,21 +10,21 @@ const EmailPlugin = () => {
   const [body, setBody] = useState("");
   const [loader, setLoader] = useState("Save");
 
-  // const api_key = "1eb3120a-38ce-428b-b6d7-bfb8fac59fcf";
-  const api_key = process.env.REACT_APP_API_KEY;
-  const url = `https://100085.pythonanywhere.com/api/v1/mail/${api_key}`;
+  const API_KEY = "1eb3120a-38ce-428b-b6d7-bfb8fac59fcf";
+  // const API_KEY = process.env.REACT_APP_API_KEY;
+  const url = `https://100085.pythonanywhere.com/api/v1/mail/${API_KEY}`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoader("Saving...");
 
     let data = JSON.stringify({
-      receiverName,
-      receiverEmail,
-      senderName,
-      senderEmail,
-      subject,
-      body,
+      name: receiverName,
+      email: receiverEmail,
+      fromName: senderName,
+      fromEmail: senderEmail,
+      subject: subject,
+      body: body,
     });
 
     try {
