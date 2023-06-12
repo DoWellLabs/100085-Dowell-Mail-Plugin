@@ -17,23 +17,21 @@ const EmailPlugin = () => {
     e.preventDefault();
     setLoader("Saving...");
 
+    let data = JSON.stringify({
+      receiverName,
+      receiverEmail,
+      senderName,
+      senderEmail,
+      subject,
+      body,
+    });
+
     try {
-      const res = await axios.post(
-        `${url}/?type=send-email`,
-        {
-          senderName,
-          senderEmail,
-          receiverName,
-          receiverEmail,
-          subject,
-          body,
+      const res = await axios.post(`${url}/?type=send-email`, data, {
+        headers: {
+          "Content-Type": "application/json",
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      });
       setLoader("Save");
       console.log(res);
     } catch (error) {
