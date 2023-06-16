@@ -2,11 +2,13 @@ import React, { useState , useEffect } from "react";
 import axios from 'axios'
 
 
-const Contact = () => {
+const Finder = () => {
 
-  const YOUR_API_KEY = "e73e9749-99e0-4bfb-b76c-a86d2a7c7d89";
+  const YOUR_API_KEY = process.env.YOUR_API_KEY;
+  
 
-  const [email,setEmail] = useState("");
+  const [name,setName] = useState("");
+  const [domain,setDomain] = useState("");
 
   const [msg,setMsg] = useState("");
 
@@ -21,9 +23,14 @@ const Contact = () => {
   }, [msg]);
 
 
-  const inputData = (e) => {
-    const inputEmail = e.target.value;
-    setEmail(inputEmail)
+  const handleName = (e) => {
+    const inputName = e.target.value;
+    setName(inputName)
+    
+   }
+  const handleDomain = (e) => {
+    const inputDomain = e.target.value;
+    setDomain(inputDomain)
     
    }
 
@@ -32,13 +39,14 @@ const Contact = () => {
     
     
     let data = JSON.stringify({
-      "email": email
+      "name": name,
+      "domain": domain
     });
     
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
-      url: `https://100085.pythonanywhere.com/api/v1/mail/${YOUR_API_KEY}/?type=validate`,
+      url: `https://100085.pythonanywhere.com/api/v1/mail/${YOUR_API_KEY}/?type=email-finder`,
       headers: { 
         'Content-Type': 'application/json'
       },
@@ -61,7 +69,8 @@ const Contact = () => {
       
     });
 
-    setEmail("");
+    setName("");
+    setDomain("");
    }
 
   
@@ -73,13 +82,22 @@ const Contact = () => {
       
       className="bg-slate-700 px-10 pt-5 pb-5  rounded-md flex flex-col items-center justify-center space-y-5 shadow-2xl z-[10]"
     >
-      <h1 className="text-white text-[32px] font-bold">Validate Email</h1>
-      <input onChange={inputData} value={email}
-        name="email"
+      <h1 className="text-white text-[32px] font-bold">Email Finder</h1>
+      <input onChange={handleName} value={name}
+        name="name"
         className="w-[300px] h-10 rounded-md outline-none"
-        type="email"
-        placeholder="Email..."
+        type="text"
+        placeholder="Name..."
          required 
+         autoComplete="off"
+      />
+      <input onChange={handleDomain} value={domain}
+        name="domain"
+        className="w-[300px] h-10 rounded-md outline-none"
+        type="text"
+        placeholder="Domain..."
+         required 
+         autoComplete="off"
       />
       
       <button
@@ -100,4 +118,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Finder;

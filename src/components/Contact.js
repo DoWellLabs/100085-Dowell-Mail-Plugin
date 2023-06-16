@@ -3,102 +3,124 @@ import axios from "axios";
 
 const Contact = () => {
 
-    const YOUR_API_KEY = process.env.YOUR_API_KEY;
+     const YOUR_API_KEY = process.env.YOUR_API_KEY;
+   
 
-  
-
-  const [inputData, setInputData] = useState({
-    yourname: "",
-    youremail: "",
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-  
-  const [msg,setMsg] = useState("");
-
-  useEffect(() => {
-    const timeId = setTimeout(() => {
-        setMsg("")
-    }, 3000)
-
-    return () => {
-      clearTimeout(timeId);
-    }
-  }, [msg]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setInputData((prev) => {
-      return { ...prev, [name]: value };
-    });
-  };
-
-  
-
-  const handleSubmit = (e) => {
     
-    e.preventDefault();
-    const dataYourEmail = inputData.youremail;
-    const dataYourName = inputData.yourname;
-    const dataName = inputData.name;
-    const dataEmail = inputData.email;
-    const dataSubject = inputData.subject;
-    const dataMessage = inputData.message;
-      
-      
+    const [senderName,setSenderName] = useState("");
+    const [senderEmail,setSenderEmail] = useState("");
+    const [receiverName,setReceiverName] = useState("");
+    const [receiverEmail,setReceiverEmail] = useState("");
+    const [subject,setSubject] = useState("");
+    const [message,setMessage] = useState("");
+    
+    const [errorMsg,setErrorMsg] = useState("");
+    const [receiverMsg, setReceiverMsg] = useState(false);
+    const [senderMsg, setSenderMsg] = useState(false);
 
-      
-      let data = JSON.stringify({
-        "email": dataEmail,
-        "name": dataName,
-        "fromName": dataYourName,
-        "fromEmail": dataYourEmail,
-        "subject": dataSubject,
-        "body": dataMessage
-      });
-      
-      let config = {
-        method: 'post',
-        maxBodyLength: Infinity,
-        url: `https://100085.pythonanywhere.com/api/v1/mail/${YOUR_API_KEY}/?type=send-email`,
-        headers: { 
-          'Content-Type': 'application/json'
-        },
-        data : data
-      };
-      
-      axios.request(config)
-      .then((response) => {
-        
-        if(JSON.stringify(response.data.success === 'true')){
+    useEffect(() => {
+      const timeId = setTimeout(() => {
+        setErrorMsg("")
+      }, 3000)
   
-          setMsg(JSON.stringify(response.data.message));
-        }
-      })
-      .catch((error) => {
+      return () => {
+        clearTimeout(timeId);
+      }
+    }, [errorMsg]);
+    
+  
+    const senderEmailValidation = (e) => {
+      let pattern =       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      
+      let senderEmailValue = e.target.value;
+      setSenderEmail(senderEmailValue);
+  
+      if (senderEmail.match(pattern)) {
+          setSenderMsg(true);
+      } else {
+        setSenderMsg(false);
+      }
+
+    
+    };
+
+    const receiverEmailValidation = (e) => {
+      let pattern =       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      
+      let receiverEmailValue = e.target.value;
+      setReceiverEmail(receiverEmailValue);
+  
+      if (receiverEmail.match(pattern)) {
+          setReceiverMsg(true);
+      } else {
+        setReceiverMsg(false);
+      }
+    };
+  
+
+
+    const handleSubmit = (e) => {
+    
+      e.preventDefault();
         
-        if(error.code === "ERR_BAD_REQUEST"){
-          setMsg("Something Went Wrong...!")
-        }else {
-          setMsg(error.message)
+        let data = JSON.stringify({
+          "email": receiverEmail,
+          "name": receiverName,
+          "fromName": senderName,
+          "fromEmail": senderEmail,
+          "subject": subject,
+          "body": message
+        });
+        
+        let config = {
+          method: 'post',
+          maxBodyLength: Infinity,
+          url: `https://100085.pythonanywhere.com/api/v1/mail/${YOUR_API_KEY}/?type=send-email`,
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          data : data
+        };
+        
+        axios.request(config)
+        .then((response) => {
+
+          setSenderName("");
+          setSenderEmail("");
+          setReceiverName("");
+          setReceiverEmail("");
+          setSubject("");
+          setMessage("");
+  
+          setReceiverMsg(false);
+          setSenderMsg(false);
           
-        }
+          if(JSON.stringify(response.status === 200)){
+    
+            setErrorMsg(JSON.stringify(response.data.message));
+          }
+        })
+        .catch((error) => {
+          setSenderName("");
+          setSenderEmail("");
+          setReceiverName("");
+          setReceiverEmail("");
+          setSubject("");
+          setMessage("");
+  
+          setReceiverMsg(false);
+          setSenderMsg(false);
+
+         
+          setErrorMsg("Something went wrong...!");
+          
+          
+        });
+  
         
-      });
-      
-      setInputData({
-        yourname: "",
-        youremail: "",
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-      
-  };
+       
+        
+    };
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -109,53 +131,70 @@ const Contact = () => {
     >
       <h1 className="text-white text-[32px] font-bold">Send Email</h1>
       <input
-        name="yourname"
+        name="senderName"
         className="w-[300px] h-10 rounded-md outline-none"
         type="text"
         placeholder="Sender Name..."
-        onChange={handleChange} required value={inputData.yourname}
+        onChange={(e) => setSenderName(e.target.value)} required value={senderName}
+        autoComplete="off" 
       />
+      <div className="relative flex items-center justify-center">
       <input
-        name="youremail"
+        name="senderEmail"
         className="w-[300px] h-10 rounded-md outline-none"
         type="text"
         placeholder="Sender Email..."
-        onChange={handleChange} required value={inputData.youremail}
-      />
+        onChange={senderEmailValidation}
+        required value={senderEmail}
+        autoComplete="off" />
+          {senderEmail === '' ? "" : senderMsg ? <img className="w-[24px] h-[24px] absolute right-1" src="tick.svg" alt="true" /> : <img className="w-[24px] h-[24px] absolute right-1" src="cross.svg" alt="true" />}
+        </div>
       <input
-        name="name"
+        name="receiverName"
         className="w-[300px] h-10 rounded-md outline-none"
         type="text"
-        placeholder="Recipient Name..."
-        onChange={handleChange} required value={inputData.name}
+        placeholder="Receiver Name..."
+        onChange={(e) => setReceiverName(e.target.value)} required value={receiverName}
+      
+        autoComplete="off"
       />
+      <div className="relative flex items-center justify-center">
       <input
-        name="email"
+        name="receiverEmail"
         className="w-[300px] h-10 rounded-md outline-none"
         type="text"
-        placeholder="Recipient Email..."
-        onChange={handleChange}
-        required value={inputData.email} />
+        placeholder="Receiver Email..."
+        onChange={receiverEmailValidation}
+        required value={receiverEmail}
+        autoComplete="off" />
+        
+        {receiverEmail === '' ? "" : receiverMsg ? <img className="w-[24px] h-[24px] absolute right-1" src="tick.svg" alt="true" /> : <img className="w-[24px] h-[24px] absolute right-1" src="cross.svg" alt="true" />}
+
+        </div>
       <input
         name="subject"
         className="w-[300px] h-10 rounded-md outline-none"
         type="text"
         placeholder="Subject..."
-        onChange={handleChange}
-        required value={inputData.subject} />
+        onChange={(e) => setSubject(e.target.value)}
+        required value={subject} 
+        autoComplete="off"
+        />
       <textarea
         name="message"
         className="w-[300px] rounded-md h-40 outline-none overflow-scroll-y resize-none"
         placeholder="Message..."
-        onChange={handleChange}
-        required value={inputData.message} />
+        onChange={(e) => setMessage(e.target.value)}
+        required value={message} 
+        autoComplete="off"
+        />
       <button
         className="hover:bg-blue-600 rounded-md bg-blue-700 w-full px-10 py-2 text-white font-semibold"
         type="submit"
       >
         Send
       </button>
-      {msg === '' ? "" : <p className="absolute left-0 text-white font-semibold py-2 bg-black w-full rounded-md text-center">{msg}</p> }
+      {errorMsg === '' ? "" : <p className="absolute left-0 text-white font-semibold py-2 bg-black w-full rounded-md text-center">{errorMsg}</p> }
     </form>
      
     </div>

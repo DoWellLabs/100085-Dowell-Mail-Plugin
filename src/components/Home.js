@@ -1,28 +1,30 @@
 import React, { useState} from "react";
 import Contact from "./Contact";
-import Validate from "./Validate";
+
+import Finder from "./Finder";
+
 
 
 const Home = () => {
   
   const [home,setHome] = useState(true);
-  const [validate,setValidate] = useState(false);
+  const [finder,setFinder] = useState(false);
   const [sendEmail,setSendEmail] = useState(false);
 
 const emailHandler = () => {
   setSendEmail(true);
   setHome(false);
-  setValidate(false);
+  setFinder(false);
 }
 const validateHandler = () => {
   setSendEmail(false);
   setHome(false);
-  setValidate(true);
+  setFinder(true);
 }
 
 const homeHandler = () => {
   setHome(true);
-  setValidate(false);
+  setFinder(false);
   setSendEmail(false);
 }
 
@@ -46,7 +48,7 @@ const homeHandler = () => {
       <div onClick={validateHandler}
         className="hover:bg-blue-600 rounded-md bg-blue-700   text-white font-semibold w-full py-2 text-center cursor-pointer"
       >
-        Validate Email
+        Email Finder
       </div>
       <div onClick={emailHandler}
         className="hover:bg-blue-600 rounded-md bg-blue-700   text-white font-semibold w-full py-2 text-center cursor-pointer"
@@ -58,7 +60,7 @@ const homeHandler = () => {
     </div>
   }
   {sendEmail && <Contact /> }
-  {validate && <Validate /> }
+  {finder && <Finder /> }
     </div>
   
   );
