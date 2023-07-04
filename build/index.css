@@ -1,0 +1,79 @@
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/email.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
+.email-form {
+  width: 30%;
+  margin: 2px 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.email-form form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.email-form input,
+.email-form textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.email-form textarea {
+  resize: vertical;
+  height: 150px;
+}
+.email-form .fail {
+  color: red;
+  word-wrap: break-word;
+  margin: 10px;
+}
+.email-form .success {
+  color: green;
+}
+.email-form .successMessage {
+  color: green;
+}
+.email-form .errorMessage {
+  color: red;
+}
+.email-form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.email-form button:hover {
+  background-color: #0056b3;
+}
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style/main.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+#emailservice {
+  width: 100%;
+}
+#emailservice .app {
+  width: 100%;
+}
+#emailservice .app .dashboard {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+#emailservice .app .dashboard .cardform {
+  width: 100%;
+  height: auto;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+}
+#emailservice .app-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+/*# sourceMappingURL=index.css.map*/

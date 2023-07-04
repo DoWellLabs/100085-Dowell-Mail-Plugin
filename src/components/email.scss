@@ -1,0 +1,56 @@
+.email-form {
+    width:30%;
+    margin: 2px 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      
+    }
+  
+    input,
+    textarea {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  
+    textarea {
+      resize: vertical;
+      height: 150px;
+    }
+    .fail{
+      color: red;
+      word-wrap: break-word;
+      margin: 10px;
+    }
+    .success{
+      color: green;
+    }
+  
+    
+    .successMessage{
+      color: green;
+    }
+    .errorMessage{
+      color: red;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+  

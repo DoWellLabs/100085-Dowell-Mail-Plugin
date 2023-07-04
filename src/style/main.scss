@@ -1,0 +1,27 @@
+#emailservice {
+    
+        width: 100%; 
+        .app{
+            width: 100%;  
+        .dashboard {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+          .cardform {
+              width: 100%;
+              height: auto;
+              margin: 10px;
+              display: flex;
+              flex-direction: row;
+              
+              
+          }
+        }
+    } 
+    .app-title {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 1em;
+    }
+    
+} 

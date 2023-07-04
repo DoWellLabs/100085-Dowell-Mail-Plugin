@@ -1,0 +1,18 @@
+{
+    "name": "hp/email-service-plugin",
+    "description": "email service for dowell research",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Hp\\EmailServicePlugin\\": "includes/"
+        }
+    },
+    "authors": [
+        {
+            "name": "abatetsegaye1",
+            "email": "abatetsegaye12@gmail.com"
+        }
+    ],
+    "require": {}
+}
