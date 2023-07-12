@@ -1,0 +1,43 @@
+#wpmail {
+    .app-title {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 1em;
+    }
+
+    .dashboard {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        justify-content: space-around;
+            input {
+                margin: 10px;
+            }
+
+            textarea {
+                margin: 10px;
+            }
+
+            button {
+                margin: 10px;
+                color: #fff;
+                background: #007bff;
+                border: 1px solid transparent;
+                border-radius: 3px;
+                font-size: 1.4rem;
+                font-weight: 100;
+                padding: 6px 8px;
+            }
+
+            button:hover {
+                transform: translateY(-2px);
+                cursor: pointer;
+            }
+    }
+}

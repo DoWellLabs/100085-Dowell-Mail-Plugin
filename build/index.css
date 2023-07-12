@@ -1,0 +1,41 @@
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style/main.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+#wpmail .app-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+#wpmail .dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#wpmail .contact-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: space-around;
+}
+#wpmail .contact-form input {
+  margin: 10px;
+}
+#wpmail .contact-form textarea {
+  margin: 10px;
+}
+#wpmail .contact-form button {
+  margin: 10px;
+  color: #fff;
+  background: #007bff;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  font-size: 1.4rem;
+  font-weight: 100;
+  padding: 6px 8px;
+}
+#wpmail .contact-form button:hover {
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=index.css.map*/
